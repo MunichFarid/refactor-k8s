@@ -1,0 +1,12 @@
+apiVersion: v2
+name: app-nginx-blue
+description: Nginx Chart
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+icon: "https://helm.sh/img/helm.svg"
+
+dependencies:
+  - name: base
+    version: 0.1.0
+    repository: "file://../base"

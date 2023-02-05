@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-nginx-blue
+data:
+  index.html: |
+    <html style="text-align:center"><body style="background-color:#92a8d1;">
+    <br><h1>Welcome, Infra Community!</h1></br>
+    <h2>This is NginX Blue Homepage.</h2> </br>
+    <h3>Node-Name: $MY_NODE_NAME </br> Pod-IP: $MY_POD_IP </h3>
+    </body></html>

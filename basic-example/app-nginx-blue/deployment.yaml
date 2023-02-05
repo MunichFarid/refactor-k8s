@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-nginx-blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-nginx-blue
+  template:
+    metadata:
+      labels:
+        app: app-nginx-blue
+    spec:
+      containers:
+      - image: nginx:latest
+        name: app-nginx-blue
+        lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "envsubst < /tmp/index.html > /usr/share/nginx/html/index.html"]
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - mountPath: /tmp
+          name: homepage-mount
+        env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      volumes:
+      - name: homepage-mount
+        configMap:
+          name: app-nginx-blue

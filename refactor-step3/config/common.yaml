@@ -1,0 +1,8 @@
+anchors:
+  - &communityValue "Cool"
+
+app-nginx-blue:
+  community: *communityValue
+
+app-nginx-tw:
+  community: *communityValue
