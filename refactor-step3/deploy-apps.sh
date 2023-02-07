@@ -46,9 +46,7 @@ fi
 if [[ "$HELM_ACTION" == "uninstall" ]]; then
     helm uninstall controller
 else
-    helm dependency build "app-nginx-tw"
-    helm dependency build "app-nginx-blue"
-    helm dependency build "controller"
+    helm dependency update controller
     helm upgrade -i "controller" "controller" -f config/common.yaml
 fi
 
