@@ -44,9 +44,9 @@ if [ -z "$HELM_ACTION" ]; then
 fi
 
 if [[ "$HELM_ACTION" == "uninstall" ]]; then
-    helm uninstall controller
+    helm uninstall frontend-apps
 else
-    helm dependency update controller
-    helm upgrade -i "controller" "controller" -f config/common.yaml
+    helm dependency update frontend-apps
+    helm upgrade -i "frontend-apps" "frontend-apps" -f config/common.yaml
 fi
 
